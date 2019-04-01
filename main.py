@@ -15,12 +15,13 @@ target = cv2.imread(filepath, cv2.IMREAD_COLOR)
 
 t = time.time()
 
-image = genalg.calculate_average_image(target, 32)
-result = genalg.calculate_image(image, target, epochs=5, pass_points=10, mutation_rate=0.03, offset=150, select=5, initial_pop=15)
+image = genalg.calculate_average_image(target, 64)
+result = genalg.calculate_image(image, target, epochs=5, goal=10, mutation_rate=0.03, offset=150, select=5, initial_pop=15)
 cv2.imshow("source", image)
 cv2.imshow("target", target)
 cv2.imshow("result", result)
 
+filepath.replace("\\", "/")
 nameonly = filepath.split("/")[-1]
 cv2.imwrite("result/source_{}".format(nameonly), image)
 cv2.imwrite("result/target_{}".format(nameonly), target)
